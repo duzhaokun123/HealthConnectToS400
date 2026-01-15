@@ -9,7 +9,6 @@ import org.spongycastle.crypto.params.KeyParameter
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.Date
-import kotlin.math.roundToInt
 
 data class MuscleMassScale(
     val min: Map<UserInfo.Sex, Double>,

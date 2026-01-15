@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.ParcelUuid
 import android.util.Log
 import android.view.View
+import android.view.WindowInsets
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -39,6 +40,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.Period
 import androidx.core.content.edit
+import androidx.core.view.updatePadding
 import androidx.health.connect.client.records.HeartRateRecord
 import androidx.health.connect.client.records.Record
 import androidx.health.connect.client.records.metadata.Device
@@ -243,6 +245,13 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
+        }
+
+        window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+            val systemBars = insets.getInsets(WindowInsets.Type.systemBars() + WindowInsets.Type.displayCutout())
+            binding.toolbar.updatePadding(left = systemBars.left, right = systemBars.right, top = systemBars.top)
+            binding.sv.updatePadding(left = systemBars.left, right = systemBars.right, bottom = systemBars.bottom)
+            WindowInsets.CONSUMED
         }
     }
 
