@@ -335,6 +335,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
         bodyComposition.heartRate?.let { heartRate ->
+            if (binding.cbHeartRate.isChecked.not()) return@let
             records.add(
                 HeartRateRecord(
                     time, ZoneOffset.UTC,

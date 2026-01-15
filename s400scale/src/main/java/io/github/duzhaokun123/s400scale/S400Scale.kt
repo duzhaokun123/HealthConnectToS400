@@ -160,7 +160,6 @@ object S400Scale {
         val decryptedPayload = ByteArray(ccm.getOutputSize(cipherText.size))
         val len = ccm.processBytes(cipherText, 0, cipherText.size, decryptedPayload, 0)
         ccm.doFinal(decryptedPayload, len)
-        println("decryptedPayload: ${decryptedPayload.joinToString("; ") { String.format("%02X", it) }}")
 
         val obj = ByteArray(9) // 12 - 3 = 9 bytes
         System.arraycopy(decryptedPayload, 3, obj, 0, 9)
@@ -171,7 +170,6 @@ object S400Scale {
 
         // Convert the 4 bytes to an integer (little-endian)
         val value = ByteBuffer.wrap(slice).order(ByteOrder.LITTLE_ENDIAN).int
-        println("value: ${value.toHexString()}")
         parseValue(value)
     }
 

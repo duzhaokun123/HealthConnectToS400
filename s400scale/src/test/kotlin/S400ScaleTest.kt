@@ -103,5 +103,6 @@ class S400ScaleTest {
         assertEquals(55.4, bc.weight)
         assertEquals(601.0, bc.impedance)
         assertEquals(22.1, bc.fat)
+        assertEquals(52.0, bc.heartRate)
     }
 }

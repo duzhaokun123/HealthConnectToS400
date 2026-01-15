@@ -157,6 +157,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true" />
+
+                <CheckBox
+                    android:id="@+id/cb_heart_rate"
+                    android:text="Also record Heart Rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
