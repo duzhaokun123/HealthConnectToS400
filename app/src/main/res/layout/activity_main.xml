@@ -122,23 +122,37 @@
                         android:inputType="textNoSuggestions" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ViewSwitcher
-                    android:id="@+id/view_switcher"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_scan"
-                        android:layout_marginTop="16dp"
-                        android:text="Scan"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ViewSwitcher
+                        android:id="@+id/view_switcher"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content">
 
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_scan"
+                            android:layout_marginTop="16dp"
+                            android:text="Scan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminate="true" />
+                    </ViewSwitcher>
+
+                    <ImageView
+                        android:id="@+id/iv_device_scan"
+                        android:src="@drawable/bluetooth_searching_24px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:indeterminate="true" />
-                </ViewSwitcher>
+                        app:tint="?colorAccent"
+                        android:visibility="invisible" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_result"

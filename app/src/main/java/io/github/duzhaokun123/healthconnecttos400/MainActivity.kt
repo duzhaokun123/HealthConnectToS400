@@ -78,6 +78,12 @@ class MainActivity : AppCompatActivity() {
             val device = result.device
             if (device.address.macAddressUniform() == deviceMacAddress.macAddressUniform()) {
                 Log.d(TAG, "found device: ${device.address}")
+                runOnUiThread {
+                    binding.ivDeviceScan.visibility = View.VISIBLE
+                    binding.ivDeviceScan.postDelayed({
+                        binding.ivDeviceScan.visibility = View.INVISIBLE
+                    }, 500)
+                }
                 val data = result.scanRecord?.serviceData[ParcelUuid.fromString("0000fe95-0000-1000-8000-00805f9b34fb")] ?: byteArrayOf()
                 Log.d(TAG, "data: ${data.joinToString(",") { it.toUByte().toString() }}")
                 val bodyComposition = S400Scale.getBodyComposition(userInfo,
