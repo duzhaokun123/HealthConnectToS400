@@ -86,14 +86,31 @@ class MainActivity : AppCompatActivity() {
                 }
                 val data = result.scanRecord?.serviceData[ParcelUuid.fromString("0000fe95-0000-1000-8000-00805f9b34fb")] ?: byteArrayOf()
                 Log.d(TAG, "data: ${data.joinToString(",") { it.toUByte().toString() }}")
-                val bodyComposition = S400Scale.getBodyComposition(userInfo,
-                    S400InputData(
-                        macOriginal = deviceMacAddress,
-                        aesKey = deviceBleKey,
-                        data = data,
-                        dataString = "skip"
-                    )
-                )
+                val bodyComposition =
+                    runCatching {
+                        S400Scale.getBodyComposition(userInfo,
+                            S400InputData(
+                                macOriginal = deviceMacAddress,
+                                aesKey = deviceBleKey,
+                                data = data,
+                                dataString = "skip"
+                            )
+                        )
+                    }.onFailure {
+                        Log.e(TAG, "failed to get body composition", it)
+                        getSystemService<BluetoothManager>()!!
+                            .adapter
+                            .bluetoothLeScanner
+                            .stopScan(this)
+                        runOnUiThread {
+                            binding.viewSwitcher.showPrevious()
+                            MaterialAlertDialogBuilder(this@MainActivity)
+                                .setTitle("Data Error")
+                                .setMessage("Failed to parse data from scale: ${it.message}")
+                                .setPositiveButton(android.R.string.ok, null)
+                                .show()
+                        }
+                    }.getOrNull()
                 Log.d(TAG, "bodyComposition: $bodyComposition")
                 if (bodyComposition != null) {
                     this@MainActivity.bodyComposition = bodyComposition
