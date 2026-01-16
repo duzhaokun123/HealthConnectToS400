@@ -1,6 +1,6 @@
 [versions]
 activityKtx = "1.12.2"
-agp = "8.13.2"
+agp = "9.0.0"
 healthconnect = "1.1.0"
 preferenceKtx = "1.2.1"
 spongycastle = "1.58.0.0"
