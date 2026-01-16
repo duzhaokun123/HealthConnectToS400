@@ -41,6 +41,7 @@ import java.time.LocalDate
 import java.time.Period
 import androidx.core.content.edit
 import androidx.core.view.updatePadding
+import androidx.health.connect.client.records.BoneMassRecord
 import androidx.health.connect.client.records.HeartRateRecord
 import androidx.health.connect.client.records.Record
 import androidx.health.connect.client.records.metadata.Device
@@ -293,7 +294,8 @@ class MainActivity : AppCompatActivity() {
                     HealthPermission.getWritePermission<BodyWaterMassRecord>(),
                     HealthPermission.getWritePermission<LeanBodyMassRecord>(),
                     HealthPermission.getWritePermission<WeightRecord>(),
-                    HealthPermission.getWritePermission<HeartRateRecord>()
+                    HealthPermission.getWritePermission<HeartRateRecord>(),
+                    HealthPermission.getWritePermission<BoneMassRecord>(),
                 )
             )
         }
@@ -363,6 +365,13 @@ class MainActivity : AppCompatActivity() {
             records.add(
                 LeanBodyMassRecord(
                     time, ZoneOffset.UTC, Mass.kilograms(muscleMass), metadata
+                )
+            )
+        }
+        bodyComposition.boneMass?.let { boneMass ->
+            records.add(
+                BoneMassRecord(
+                    time, ZoneOffset.UTC, Mass.kilograms(boneMass), metadata
                 )
             )
         }
