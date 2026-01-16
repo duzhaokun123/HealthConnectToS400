@@ -99,10 +99,38 @@ class S400ScaleTest {
             dataString = "skipped"
         )
         val bc = S400Scale.getBodyComposition(userInfo, inputData)!!
-        println(bc)
+        println("""
+            |Weight: ${bc.weight}
+            |Impedance: ${bc.impedance}
+            |heartRate: ${bc.heartRate}
+            |date: ${bc.date}
+            |bmi: ${bc.bmi}
+            |proteinPercentage: ${bc.proteinPercentage}
+            |idealWeight: ${bc.idealWeight}
+            |bmr: ${bc.bmr}
+            |boneMass: ${bc.boneMass}
+            |fat: ${bc.fat}
+            |metabolicAge: ${bc.metabolicAge}
+            |muscleMass: ${bc.muscleMass}
+            |visceralFat: ${bc.visceralFat}
+            |water: ${bc.water}
+            |bodyType: ${bc.bodyType}
+            |bodyTypeName: ${bc.bodyTypeName}
+        """.trimMargin())
         assertEquals(55.4, bc.weight)
         assertEquals(601.0, bc.impedance)
-        assertEquals(22.1, bc.fat)
         assertEquals(52.0, bc.heartRate)
+        assertEquals(18.1, bc.bmi)
+        assertEquals(19.8, bc.proteinPercentage)
+        assertEquals(63.0, bc.idealWeight)
+        assertEquals(1225.0, bc.bmr)
+        assertEquals(2.56, bc.boneMass)
+        assertEquals(22.1, bc.fat)
+        assertEquals(15.0, bc.metabolicAge)
+        assertEquals(40.61, bc.muscleMass)
+        assertEquals(1.0, bc.visceralFat)
+        assertEquals(53.4, bc.water)
+        assertEquals(8, bc.bodyType)
+        assertEquals("balanced-skinny", bc.bodyTypeName)
     }
 }
