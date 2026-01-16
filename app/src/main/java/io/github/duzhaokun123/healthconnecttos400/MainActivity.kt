@@ -270,7 +270,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+        window.decorView.setOnApplyWindowInsetsListener { _, insets ->
             val systemBars = insets.getInsets(WindowInsets.Type.systemBars() + WindowInsets.Type.displayCutout())
             binding.toolbar.updatePadding(left = systemBars.left, right = systemBars.right, top = systemBars.top)
             binding.sv.updatePadding(left = systemBars.left, right = systemBars.right, bottom = systemBars.bottom)
@@ -348,7 +348,7 @@ class MainActivity : AppCompatActivity() {
         bodyComposition.fat?.let { fat ->
             records.add(
                 BodyFatRecord(
-                    time, ZoneOffset.UTC, Percentage(fat / bodyComposition.weight * 100), metadata
+                    time, ZoneOffset.UTC, Percentage(fat), metadata
                 )
             )
         }
