@@ -21,3 +21,9 @@
 ## 已知问题
 
 - 部分情况会刷新 key 需要重新获取
+- 抄来的算法和官方不同 (地区差异?)
+
+## 感谢
+
+- [mi-scale-exporter](https://github.com/lswiderski/mi-scale-exporter)
+- [MiScaleBodyComposition](https://github.com/lswiderski/MiScaleBodyComposition)
