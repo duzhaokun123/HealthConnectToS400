@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                         binding.tvResult.text = """
                             |weight: ${bodyComposition.weight} kg
                             |bmi: ${bodyComposition.bmi}
-                            |fat: ${bodyComposition.fat} kg
+                            |fat: ${bodyComposition.fat} %
                             |muscleMass: ${bodyComposition.muscleMass} kg
                             |water: ${bodyComposition.water} kg
                             |boneMass: ${bodyComposition.boneMass} kg
@@ -389,8 +389,8 @@ class MainActivity : AppCompatActivity() {
         runBlocking {
             runCatching {
                 healthConnectClient.insertRecords(records)
-            }.onSuccess {
-                toast("data recorded")
+            }.onSuccess { response ->
+                toast("data recorded total: ${response.recordIdsList.size}")
                 dataRecorded = true
             }.onFailure { t ->
                 MaterialAlertDialogBuilder(this@MainActivity)
