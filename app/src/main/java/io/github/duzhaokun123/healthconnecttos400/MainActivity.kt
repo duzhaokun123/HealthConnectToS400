@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                             |bmi: ${bodyComposition.bmi}
                             |fat: ${bodyComposition.fat} %
                             |muscleMass: ${bodyComposition.muscleMass} kg
-                            |water: ${bodyComposition.water} kg
+                            |water: ${bodyComposition.water} %
                             |boneMass: ${bodyComposition.boneMass} kg
                             |proteinPercentage: ${bodyComposition.proteinPercentage} %
                             |bmr: ${bodyComposition.bmr} kcal
@@ -357,7 +357,7 @@ class MainActivity : AppCompatActivity() {
         bodyComposition.water?.let { water ->
             records.add(
                 BodyWaterMassRecord(
-                    time, ZoneOffset.UTC, Mass.kilograms(water), metadata
+                    time, ZoneOffset.UTC, Mass.kilograms(bodyComposition.weight * water / 100), metadata
                 )
             )
         }
