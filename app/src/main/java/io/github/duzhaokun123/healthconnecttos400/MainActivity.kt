@@ -125,19 +125,8 @@ class MainActivity : AppCompatActivity() {
                         binding.viewSwitcher.showPrevious()
                         binding.tvResult.text = """
                             |weight: ${bodyComposition.weight} kg
-                            |bmi: ${bodyComposition.bmi}
-                            |fat: ${bodyComposition.fat} %
-                            |muscleMass: ${bodyComposition.muscleMass} kg
-                            |water: ${bodyComposition.water} %
-                            |boneMass: ${bodyComposition.boneMass} kg
-                            |proteinPercentage: ${bodyComposition.proteinPercentage} %
-                            |bmr: ${bodyComposition.bmr} kcal
-                            |heartRate: ${bodyComposition.heartRate} bpm
-                            |visceralFat: ${bodyComposition.visceralFat}
-                            |metabolicAge: ${bodyComposition.metabolicAge} years
-                            |bodyType: ${bodyComposition.bodyTypeName} (${bodyComposition.bodyType})
-                            |idealWeight: ${bodyComposition.idealWeight} kg
                             |impedance: ${bodyComposition.impedance}
+                            |heartRate: ${bodyComposition.heartRate} bpm
                             |Recorded at: ${bodyComposition.date}
                         """.trimMargin()
                     }
@@ -289,13 +278,8 @@ class MainActivity : AppCompatActivity() {
             requestHealthPermissions.launch(
                 setOf(
                     HealthPermission.getReadPermission<HeightRecord>(),
-                    HealthPermission.getWritePermission<BasalMetabolicRateRecord>(),
-                    HealthPermission.getWritePermission<BodyFatRecord>(),
-                    HealthPermission.getWritePermission<BodyWaterMassRecord>(),
-                    HealthPermission.getWritePermission<LeanBodyMassRecord>(),
                     HealthPermission.getWritePermission<WeightRecord>(),
                     HealthPermission.getWritePermission<HeartRateRecord>(),
-                    HealthPermission.getWritePermission<BoneMassRecord>(),
                 )
             )
         }
@@ -340,41 +324,6 @@ class MainActivity : AppCompatActivity() {
                 time, ZoneOffset.UTC, Mass.kilograms(bodyComposition.weight), metadata
             )
         )
-        bodyComposition.bmr?.let { bmr ->
-            records.add(
-                BasalMetabolicRateRecord(
-                    time, ZoneOffset.UTC, Power.kilocaloriesPerDay(bmr), metadata
-                )
-            )
-        }
-        bodyComposition.fat?.let { fat ->
-            records.add(
-                BodyFatRecord(
-                    time, ZoneOffset.UTC, Percentage(fat), metadata
-                )
-            )
-        }
-        bodyComposition.water?.let { water ->
-            records.add(
-                BodyWaterMassRecord(
-                    time, ZoneOffset.UTC, Mass.kilograms(bodyComposition.weight * water / 100), metadata
-                )
-            )
-        }
-        bodyComposition.muscleMass?.let { muscleMass ->
-            records.add(
-                LeanBodyMassRecord(
-                    time, ZoneOffset.UTC, Mass.kilograms(muscleMass), metadata
-                )
-            )
-        }
-        bodyComposition.boneMass?.let { boneMass ->
-            records.add(
-                BoneMassRecord(
-                    time, ZoneOffset.UTC, Mass.kilograms(boneMass), metadata
-                )
-            )
-        }
         bodyComposition.heartRate?.let { heartRate ->
             if (binding.cbHeartRate.isChecked.not()) return@let
             records.add(
