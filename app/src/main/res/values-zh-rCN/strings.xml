@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HealthConnectToS400</string>
+    <string name="request_permissions">请求权限</string>
+    <string name="user_info">用户信息：</string>
+    <string name="height">身高 (厘米)</string>
+    <string name="age">年龄 (岁)</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="device_info">设备信息</string>
+    <string name="device_mac_address">设备 MAC 地址</string>
+    <string name="ble_key">BLE 密钥</string>
+    <string name="scan">扫描</string>
+    <string name="no_data">无数据</string>
+    <string name="record">记录</string>
+    <string name="auto_record">自动记录</string>
+    <string name="record_heart_rate">同时记录心率</string>
+    <string name="data_processing">所有数据仅在本地设备上处理</string>
+    <string name="invalid">无效</string>
+    <string name="please_select_sex">请选择性别</string>
+    <string name="no_bluetooth_scan_permission">无 BLUETOOTH_SCAN 权限</string>
+    <string name="data_error">数据错误</string>
+    <string name="failed_to_parse_data">解析秤数据失败：%s</string>
+    <string name="health_connect_error">Health Connect 错误</string>
+    <string name="failed_to_initialize_health_connect">初始化 Health Connect 失败：%s</string>
+    <string name="data_already_recorded">数据已记录</string>
+    <string name="duplicate_recording_warning">多次记录数据可能导致重复。是否继续？</string>
+    <string name="record_data_error">记录数据错误</string>
+    <string name="failed_to_record_data">记录数据失败：%s</string>
+    <string name="data_recorded">数据已记录，共 %d 条</string>
+    <string name="scan_failed">扫描失败：%d</string>
+</resources>

@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HealthConnectToS400</string>
+    <string name="request_permissions">Request Permissions</string>
+    <string name="user_info">User Info:</string>
+    <string name="height">Height (cm)</string>
+    <string name="age">Age (years)</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="device_info">Device Info</string>
+    <string name="device_mac_address">Device MAC Address</string>
+    <string name="ble_key">BLE Key</string>
+    <string name="scan">Scan</string>
+    <string name="no_data">No Data</string>
+    <string name="record">Record</string>
+    <string name="auto_record">Auto Record</string>
+    <string name="record_heart_rate">Also record Heart Rate</string>
+    <string name="data_processing">All data are processed locally on the device only</string>
+    <string name="invalid">Invalid</string>
+    <string name="please_select_sex">Please select sex</string>
+    <string name="no_bluetooth_scan_permission">No BLUETOOTH_SCAN permission</string>
+    <string name="data_error">Data Error</string>
+    <string name="failed_to_parse_data">Failed to parse data from scale: %s</string>
+    <string name="health_connect_error">Health Connect Error</string>
+    <string name="failed_to_initialize_health_connect">Failed to initialize Health Connect: %s</string>
+    <string name="data_already_recorded">Data Already Recorded</string>
+    <string name="duplicate_recording_warning">Recording data multiple times may lead to duplicates. Do you want to proceed?</string>
+    <string name="record_data_error">Record Data Error</string>
+    <string name="failed_to_record_data">Failed to record data: %s</string>
+    <string name="data_recorded">Data recorded total: %d</string>
+    <string name="scan_failed">Scan failed: %d</string>
 </resources>

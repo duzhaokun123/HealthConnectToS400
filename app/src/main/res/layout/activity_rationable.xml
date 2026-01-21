@@ -6,5 +6,5 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="all data are process in local device only"/>
+        android:text="@string/data_processing"/>
 </RelativeLayout>

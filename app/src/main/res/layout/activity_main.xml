@@ -32,20 +32,20 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_request_permissions"
-                    android:text="Request Permissions"
+                    android:text="@string/request_permissions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="user info:"
+                    android:text="@string/user_info"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Height (cm)">
+                    android:hint="@string/height">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_height"
@@ -59,7 +59,7 @@
                     android:id="@+id/il_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Age (years)"
+                    android:hint="@string/age"
                     app:endIconDrawable="@drawable/calendar_add_on_24px"
                     app:endIconMode="custom">
 
@@ -79,13 +79,13 @@
 
                     <RadioButton
                         android:id="@+id/rb_male"
-                        android:text="Male"
+                        android:text="@string/male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
                         android:id="@+id/rb_female"
-                        android:text="Female"
+                        android:text="@string/female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RadioGroup>
@@ -93,13 +93,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="device info"
+                    android:text="@string/device_info"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Device MAC Address">
+                    android:hint="@string/device_mac_address">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_device_mac"
@@ -112,7 +112,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="BLE key">
+                    android:hint="@string/ble_key">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_ble_key"
@@ -135,7 +135,7 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_scan"
                             android:layout_marginTop="16dp"
-                            android:text="Scan"
+                            android:text="@string/scan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -156,7 +156,7 @@
 
                 <TextView
                     android:id="@+id/tv_result"
-                    android:text="no data"
+                    android:text="@string/no_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
@@ -168,20 +168,20 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_record"
-                        android:text="Record"
+                        android:text="@string/record"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <CheckBox
                         android:id="@+id/cb_auto_record"
-                        android:text="Auto Record"
+                        android:text="@string/auto_record"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true" />
 
                     <CheckBox
                         android:id="@+id/cb_heart_rate"
-                        android:text="Also record Heart Rate"
+                        android:text="@string/record_heart_rate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false" />

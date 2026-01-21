@@ -21,11 +21,7 @@ import androidx.core.content.getSystemService
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.PermissionController
 import androidx.health.connect.client.permission.HealthPermission
-import androidx.health.connect.client.records.BasalMetabolicRateRecord
-import androidx.health.connect.client.records.BodyFatRecord
-import androidx.health.connect.client.records.BodyWaterMassRecord
 import androidx.health.connect.client.records.HeightRecord
-import androidx.health.connect.client.records.LeanBodyMassRecord
 import androidx.health.connect.client.records.WeightRecord
 import androidx.health.connect.client.request.ReadRecordsRequest
 import androidx.health.connect.client.time.TimeRangeFilter
@@ -41,14 +37,11 @@ import java.time.LocalDate
 import java.time.Period
 import androidx.core.content.edit
 import androidx.core.view.updatePadding
-import androidx.health.connect.client.records.BoneMassRecord
 import androidx.health.connect.client.records.HeartRateRecord
 import androidx.health.connect.client.records.Record
 import androidx.health.connect.client.records.metadata.Device
 import androidx.health.connect.client.records.metadata.Metadata
 import androidx.health.connect.client.units.Mass
-import androidx.health.connect.client.units.Percentage
-import androidx.health.connect.client.units.Power
 import io.github.duzhaokun123.s400scale.BodyComposition
 import java.time.ZoneOffset
 
@@ -106,8 +99,8 @@ class MainActivity : AppCompatActivity() {
                         runOnUiThread {
                             binding.viewSwitcher.showPrevious()
                             MaterialAlertDialogBuilder(this@MainActivity)
-                                .setTitle("Data Error")
-                                .setMessage("Failed to parse data from scale: ${it.message}")
+                                .setTitle(getString(R.string.data_error))
+                                .setMessage(getString(R.string.failed_to_parse_data, it.message))
                                 .setPositiveButton(android.R.string.ok, null)
                                 .show()
                         }
@@ -145,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onScanFailed(errorCode: Int) {
-            toast("scan failed: $errorCode")
+            toast(getString(R.string.scan_failed, errorCode))
         }
     }
 
@@ -162,8 +155,8 @@ class MainActivity : AppCompatActivity() {
             healthConnectClient = HealthConnectClient.getOrCreate(this)
         }.onFailure { t ->
             MaterialAlertDialogBuilder(this)
-                .setTitle("Health Connect Error")
-                .setMessage("Failed to initialize Health Connect: ${t.message}")
+                .setTitle(getString(R.string.health_connect_error))
+                .setMessage(getString(R.string.failed_to_initialize_health_connect, t.message))
                 .setPositiveButton(android.R.string.ok) { _, _ ->
                     finish()
                 }
@@ -174,19 +167,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnScan.setOnClickListener {
             if (binding.etHeight.text.toString().toIntOrNull() == null) {
-                binding.etHeight.error = "invalid"
+                binding.etHeight.error = getString(R.string.invalid)
                 return@setOnClickListener
             }
             if (binding.etAge.text.toString().toIntOrNull() == null) {
-                binding.etAge.error = "invalid"
+                binding.etAge.error = getString(R.string.invalid)
                 return@setOnClickListener
             }
             if (binding.rgSex.checkedRadioButtonId == View.NO_ID) {
-                toast("please select sex")
+                toast(getString(R.string.please_select_sex))
                 return@setOnClickListener
             }
             if (checkSelfPermission("android.permission.BLUETOOTH_SCAN") != PackageManager.PERMISSION_GRANTED) {
-                toast("no BLUETOOTH_SCAN permission")
+                toast(getString(R.string.no_bluetooth_scan_permission))
             } else {
                 // Hide the soft keyboard
                 getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
@@ -229,7 +222,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnRecord.setOnClickListener {
             if (dataOk.not()) {
-                toast("no data")
+                toast(getString(R.string.no_data))
                 return@setOnClickListener
             }
             recordData()
@@ -301,8 +294,8 @@ class MainActivity : AppCompatActivity() {
     fun recordData() {
         if (dataRecorded) {
             MaterialAlertDialogBuilder(this)
-                .setTitle("Data Already Recorded")
-                .setMessage("Recording data multiple times may lead to duplicates. Do you want to proceed?")
+                .setTitle(getString(R.string.data_already_recorded))
+                .setMessage(getString(R.string.duplicate_recording_warning))
                 .setPositiveButton(android.R.string.ok) { _, _ ->
                     dataRecorded = false
                     recordData()
@@ -339,12 +332,12 @@ class MainActivity : AppCompatActivity() {
             runCatching {
                 healthConnectClient.insertRecords(records)
             }.onSuccess { response ->
-                toast("data recorded total: ${response.recordIdsList.size}")
+                toast(getString(R.string.data_recorded, response.recordIdsList.size))
                 dataRecorded = true
             }.onFailure { t ->
                 MaterialAlertDialogBuilder(this@MainActivity)
-                    .setTitle("Record Data Error")
-                    .setMessage("Failed to record data: ${t.message}")
+                    .setTitle(getString(R.string.record_data_error))
+                    .setMessage(getString(R.string.failed_to_record_data, t.message))
                     .setPositiveButton(android.R.string.ok, null)
                     .show()
             }
