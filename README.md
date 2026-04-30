@@ -4,6 +4,10 @@
 
 将小米 S400 智能体脂秤的数据同步到 Android Health Connect
 
+## 弃用
+
+你应该购买 iPhone 然后使用米家同步到 google fit 来使用
+
 ## 功能
 
 读秤的 ble 广播解析然后写入 Health Connect
